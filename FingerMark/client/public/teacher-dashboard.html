@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logo.css">
+    <link rel="stylesheet" href="teacher-dashboard.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo brand-lockup">
+            <span class="brand-symbol" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                    <path d="M31 9c-8 1-15 5-20 12"></path>
+                    <path d="M41 11c6 2 11 6 15 12"></path>
+                    <path d="M16 24c3-7 9-12 16-14 8-2 16 0 22 5"></path>
+                    <path d="M11 31c2-7 6-13 12-18 9-7 22-9 33-3"></path>
+                    <path d="M15 39c2-6 5-11 9-15"></path>
+                    <path d="M24 45c-1-8 2-16 8-20 6-5 14-6 21-4"></path>
+                    <path d="M32 47c-2-5-1-11 2-15 4-5 10-7 16-6"></path>
+                    <path d="M21 52c10-4 18-3 26 0"></path>
+                    <path class="logo-fill" d="M22 55c6-2 14-2 20 0-2 3-6 5-10 5s-8-2-10-5z"></path>
+                </svg>
+            </span>
+            <span class="brand-text">
+                <span class="brand-name">FingerMark</span>
+                <span class="brand-tagline">Smart Attendance</span>
+            </span>
+        </div>
+        <div class="menu">
+            <a href="teacher-dashboard.html">Dashboard</a>
+            <a href="login.html" id="logout-link">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h3>Teacher Panel</h3>
+            <ul class="nav-list">
+                <li class="active" data-target="teacher-overview">Overview</li>
+                <li data-target="manual-attendance">Manual Attendance</li>
+                <li data-target="biometric-session">Start Biometric</li>
+                <li data-target="live-attendance">Attendance Summary</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <section class="hero-card card" id="teacher-overview">
+                <div>
+                    <span class="eyebrow">Live Classroom Attendance</span>
+                    <h1>Take manual attendance in bulk, then run biometric attendance for the same class from a cleaner workflow.</h1>
+                    <p id="teacher-message"></p>
+                </div>
+                <div class="hero-mini-stats">
+                    <div>
+                        <span>Today</span>
+                        <strong id="summary-present-count">0</strong>
+                        <small>Present</small>
+                    </div>
+                    <div>
+                        <span>Today</span>
+                        <strong id="summary-absent-count">0</strong>
+                        <small>Absent</small>
+                    </div>
+                </div>
+            </section>
+
+            <div class="teacher-dual-grid">
+                <section class="card" id="manual-attendance">
+                    <div class="section-heading">
+                        <span class="eyebrow">Manual Attendance</span>
+                        <h2>Bulk Roll Number Entry</h2>
+                    </div>
+                    <div class="manual-grid">
+                        <div class="manual-stack">
+                            <div class="manual-fields">
+                                <label for="manual-course">Course</label>
+                                <select id="manual-course">
+                                    <option value="">Choose course</option>
+                                </select>
+                                <label for="manual-semester">Semester</label>
+                                <select id="manual-semester">
+                                    <option value="">Choose semester</option>
+                                </select>
+                                <label for="manual-division">Division</label>
+                                <select id="manual-division">
+                                    <option value="">Choose division</option>
+                                </select>
+                                <label for="manual-subject">Subject</label>
+                                <select id="manual-subject">
+                                    <option value="">Choose subject</option>
+                                </select>
+                                <label for="manual-status">Manual Status Rule</label>
+                                <select id="manual-status" disabled>
+                                    <option value="present">Entered roll numbers = Present</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="manual-aside">
+                            <label for="manual-rolls">Roll Numbers</label>
+                            <textarea id="manual-rolls" rows="10" placeholder="24CS101&#10;24CS102&#10;24CS103"></textarea>
+                            <p class="helper-text">Enter one roll number per line or separate them with commas. Listed students will be marked present, and all other students in the selected class will be marked absent.</p>
+                            <button id="manual-submit-btn" type="button">Save Manual Attendance</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card" id="biometric-session">
+                    <div class="section-heading">
+                        <span class="eyebrow">Scanner Workflow</span>
+                        <h2>Start Biometric Attendance</h2>
+                    </div>
+                    <div class="biometric-layout">
+                        <div class="biometric-stack">
+                            <div class="biometric-fields">
+                                <div class="field-card">
+                                    <label for="bio-course">Course</label>
+                                    <select id="bio-course">
+                                        <option value="">Choose course</option>
+                                    </select>
+                                </div>
+                                <div class="field-card">
+                                    <label for="bio-semester">Semester</label>
+                                    <select id="bio-semester">
+                                        <option value="">Choose semester</option>
+                                    </select>
+                                </div>
+                                <div class="field-card">
+                                    <label for="bio-division">Division</label>
+                                    <select id="bio-division">
+                                        <option value="">Choose division</option>
+                                    </select>
+                                </div>
+                                <div class="field-card">
+                                    <label for="bio-subject">Subject</label>
+                                    <select id="bio-subject">
+                                        <option value="">Choose subject</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="biometric-status">
+                            <div class="status-panel">
+                                <span class="status-label">Scanner Status</span>
+                                <p id="bio-scanner-status">Idle</p>
+                            </div>
+                            <div class="button-row">
+                                <button id="start-bio-btn" type="button">Start Biometric Attendance</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bio-view" class="bio-feed">
+                        <div class="bio-feed-row">
+                            <div>
+                                <strong>Full-screen biometric window</strong>
+                                <span>The live scanner loop opens in biometric-attendance.html and returns here for manual attendance after stop.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section class="card" id="live-attendance">
+                <div class="section-heading">
+                    <span class="eyebrow">Session Output</span>
+                    <h2>Today's Attendance Summary</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll No</th>
+                            <th>Student Name</th>
+                            <th>Biometric</th>
+                            <th>Manual</th>
+                            <th>Final Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summary-body"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <footer>&copy; 2026 Smart Attendance System</footer>
+
+    <script src="scanner-bridge.js"></script>
+    <script src="teacher-dashboard.js"></script>
+</body>
+
+</html>

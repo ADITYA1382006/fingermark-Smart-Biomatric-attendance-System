@@ -1,0 +1,9 @@
+node_modules/
+FingerMark/server/node_modules/
+*.db
+*.db-shm
+*.db-wal
+backups/
+.DS_Store
+.vscode/
+package-lock.json

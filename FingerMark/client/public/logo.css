@@ -1,0 +1,107 @@
+:root {
+    --logo-ink: #f3f7ff;
+    --logo-accent: #ffd56e;
+    --logo-shadow: rgba(255, 255, 255, 0.14);
+}
+
+.brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-lockup.hero-brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    width: 100%;
+}
+
+.brand-symbol {
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.04) 55%, rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24), 0 0 30px var(--logo-shadow);
+    flex: 0 0 auto;
+}
+
+.brand-lockup.hero-brand .brand-symbol {
+    width: 124px;
+    height: 124px;
+    border-radius: 34px;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.24), 0 0 64px rgba(255, 255, 255, 0.12);
+}
+
+.brand-symbol svg {
+    width: 74%;
+    height: 74%;
+}
+
+.brand-symbol path {
+    fill: none;
+    stroke: var(--logo-ink);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.brand-symbol .logo-fill {
+    fill: var(--logo-ink);
+    stroke: none;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.brand-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--logo-ink);
+}
+
+.brand-lockup.hero-brand .brand-name {
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+    text-shadow: 0 10px 30px rgba(255, 107, 74, 0.1);
+    white-space: nowrap;
+}
+
+.brand-tagline {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--logo-accent);
+}
+
+.brand-lockup.hero-brand .brand-tagline {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    max-width: none;
+}
+
+@media (max-width: 720px) {
+    .brand-lockup.hero-brand {
+        gap: 16px;
+    }
+
+    .brand-lockup.hero-brand .brand-symbol {
+        width: 88px;
+        height: 88px;
+        border-radius: 24px;
+    }
+
+    .brand-lockup.hero-brand .brand-name {
+        font-size: clamp(3rem, 14vw, 4.6rem);
+        white-space: normal;
+    }
+}

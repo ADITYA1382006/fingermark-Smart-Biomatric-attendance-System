@@ -1,0 +1,15 @@
+{
+  "deleted": {
+    "subjects": 1,
+    "divisions": 1,
+    "semesters": 1,
+    "courses": 1
+  },
+  "counts": {
+    "subjects": 0,
+    "divisions": 0,
+    "semesters": 0,
+    "courses": 0,
+    "students": 1
+  }
+}

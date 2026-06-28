@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Biometric Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg: #09111f;
+            --panel: rgba(10, 24, 46, 0.88);
+            --line: rgba(173, 202, 255, 0.18);
+            --text: #f5f9ff;
+            --muted: #a4b5d3;
+            --accent: #6be6b1;
+            --danger: #ff8c8c;
+            --warn: #ffd27a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(70, 133, 255, 0.18), transparent 38%),
+                linear-gradient(160deg, #050913 0%, #09111f 52%, #081827 100%);
+            color: var(--text);
+        }
+
+        .shell {
+            min-height: 100vh;
+            padding: 28px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 24px;
+        }
+
+        .topbar,
+        .panel,
+        .result-card,
+        .log-card {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+        }
+
+        .topbar {
+            padding: 18px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .title-wrap h1 {
+            margin: 0 0 6px;
+            font-size: clamp(2rem, 4vw, 3.6rem);
+        }
+
+        .title-wrap p,
+        .session-meta,
+        .scanner-note {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .stop-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, #ff7c7c, #ff4f67);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 24px;
+        }
+
+        .panel {
+            padding: 28px;
+        }
+
+        .status-banner {
+            border: 1px solid rgba(107, 230, 177, 0.35);
+            background: rgba(107, 230, 177, 0.12);
+            color: var(--accent);
+            padding: 18px 20px;
+            border-radius: 18px;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .camera-shell {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .camera-feed {
+            width: 100%;
+            min-height: 240px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, 0.35);
+            object-fit: cover;
+        }
+
+        .camera-note {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .result-card,
+        .log-card {
+            padding: 24px;
+        }
+
+        .result-card h2,
+        .log-card h2 {
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .field {
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .field span {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .field strong {
+            font-size: 1.15rem;
+        }
+
+        .present {
+            color: var(--accent);
+        }
+
+        .error {
+            color: var(--danger);
+        }
+
+        .warning {
+            color: var(--warn);
+        }
+
+        .log-list {
+            display: grid;
+            gap: 12px;
+            max-height: 60vh;
+            overflow: auto;
+        }
+
+        .log-item {
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .log-item strong,
+        .log-item span {
+            display: block;
+        }
+
+        .log-item span {
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        @media (max-width: 960px) {
+            .shell {
+                padding: 16px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .stop-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <div class="topbar">
+            <div class="title-wrap">
+                <p class="session-meta" id="session-meta">Loading biometric session...</p>
+                <h1>Fingerprint Scanner Active</h1>
+                <p class="scanner-note" id="scanner-note">Preparing continuous scan mode.</p>
+            </div>
+            <button type="button" id="stop-biometric-btn" class="stop-btn">STOP BIOMETRIC</button>
+        </div>
+
+        <div class="grid">
+            <section class="panel">
+                <div class="status-banner" id="scanner-status-banner">Scanner initializing...</div>
+                <div class="camera-shell">
+                    <div class="status-banner" id="camera-status-banner">Camera initializing...</div>
+                    <video id="face-camera" class="camera-feed" autoplay muted playsinline></video>
+                    <p class="camera-note" id="face-note">Preparing live face recognition for this class session.</p>
+                </div>
+                <div class="result-card">
+                    <h2>Last Scan Result</h2>
+                    <div class="details">
+                        <div class="field"><span>Name</span><strong id="student-name">-</strong></div>
+                        <div class="field"><span>Division</span><strong id="student-division">-</strong></div>
+                        <div class="field"><span>Semester</span><strong id="student-semester">-</strong></div>
+                        <div class="field"><span>Branch</span><strong id="student-branch">-</strong></div>
+                        <div class="field"><span>Roll No</span><strong id="student-roll">-</strong></div>
+                        <div class="field"><span>Status</span><strong id="attendance-status" class="present">WAITING</strong></div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="log-card">
+                <h2>Live Session Log</h2>
+                <div class="log-list" id="scan-log">
+                    <div class="log-item">
+                        <strong>Scanner booting</strong>
+                        <span>The page will keep scanning until you stop the session.</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="scanner-bridge.js"></script>
+    <script src="biometric-attendance.js"></script>
+</body>
+
+</html>

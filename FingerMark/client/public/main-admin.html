@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main Admin | Smart Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logo.css">
+    <link rel="stylesheet" href="student.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo brand-lockup">
+            <span class="brand-symbol" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                    <path d="M31 9c-8 1-15 5-20 12"></path>
+                    <path d="M41 11c6 2 11 6 15 12"></path>
+                    <path d="M16 24c3-7 9-12 16-14 8-2 16 0 22 5"></path>
+                    <path d="M11 31c2-7 6-13 12-18 9-7 22-9 33-3"></path>
+                    <path d="M15 39c2-6 5-11 9-15"></path>
+                    <path d="M24 45c-1-8 2-16 8-20 6-5 14-6 21-4"></path>
+                    <path d="M32 47c-2-5-1-11 2-15 4-5 10-7 16-6"></path>
+                    <path d="M21 52c10-4 18-3 26 0"></path>
+                    <path class="logo-fill" d="M22 55c6-2 14-2 20 0-2 3-6 5-10 5s-8-2-10-5z"></path>
+                </svg>
+            </span>
+            <span class="brand-text">
+                <span class="brand-name">FingerMark</span>
+                <span class="brand-tagline">Smart Attendance</span>
+            </span>
+        </div>
+        <div class="menu">
+            <a href="main-admin.html">Main Admin</a>
+            <a href="admin.html">Admin Panel</a>
+            <a href="login.html" id="logout-link">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <aside class="sidebar glass">
+            <h3>Main Admin</h3>
+            <ul class="nav-list">
+                <li class="active" data-target="main-admin-overview">Control Center</li>
+                <li data-target="auth-area">Protected Access</li>
+                <li data-target="admin-management">Admin Management</li>
+                <li data-target="teacher-management">Teacher Management</li>
+                <li data-target="student-management">Student Management</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section class="hero-panel glass" id="main-admin-overview">
+                <div>
+                    <span class="eyebrow">Protected Workspace</span>
+                    <h1>Main admin controls for the clean default project state.</h1>
+                    <p class="small">Use username <strong>Aditya</strong> and password <strong>aditya0299</strong> to unlock privileged controls.</p>
+                    <p class="message" id="main-msg"></p>
+                </div>
+            </section>
+
+            <section id="auth-area" class="card glass">
+                <div class="section-heading">
+                    <span class="eyebrow">Protected Access</span>
+                    <h2>Main Admin Login</h2>
+                </div>
+                <form id="main-login-form" class="panel-form">
+                    <label for="main-username">Username</label>
+                    <input type="text" id="main-username" placeholder="Main admin username">
+                    <label for="main-password">Password</label>
+                    <input type="password" id="main-password" placeholder="Password">
+                    <button type="submit">Unlock Controls</button>
+                </form>
+            </section>
+
+            <section id="controls-area" class="content-section" style="display:none;">
+                <div class="card glass">
+                    <h3>Reset Full Project Data</h3>
+                    <p class="small">Only Main Admin can reset the runtime project data back to the single default admin, teacher, student, course, semester, division, subject, and biometric record.</p>
+                    <button type="button" id="reset-project-btn" class="button-danger">Reset Full Project</button>
+                </div>
+
+                <div class="card glass">
+                    <h3>Mantra RD Service Status</h3>
+                    <p class="small" id="rd-service-status">Checking RD service on 127.0.0.1:11100/rd/capture...</p>
+                    <button type="button" id="refresh-rd-status-btn">Refresh RD Status</button>
+                </div>
+
+                <div class="grid-two">
+                    <div class="card glass" id="admin-management">
+                        <h3>Manage Admins</h3>
+                        <form id="add-admin-form" class="panel-form">
+                            <input id="add-admin-username" placeholder="Username" required>
+                            <input id="add-admin-password" placeholder="Password" required>
+                            <button type="submit">Add Admin</button>
+                        </form>
+                        <form id="remove-admin-form" class="panel-form" style="margin-top:14px;">
+                            <input id="remove-admin-username" placeholder="Username to remove" required>
+                            <button type="submit" class="button-danger">Remove Admin</button>
+                        </form>
+                    </div>
+
+                    <div class="card glass">
+                        <h3>Change Student Division</h3>
+                        <form id="change-division-form" class="panel-form">
+                            <input id="change-division-roll" placeholder="Student Roll No" required>
+                            <select id="change-division-select">
+                                <option value="">Choose division</option>
+                            </select>
+                            <button type="submit">Change Division</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="grid-two">
+                    <div class="card glass" id="teacher-management">
+                        <h3>Manage Teachers</h3>
+                        <form id="add-teacher-form" class="panel-form">
+                            <input id="add-teacher-name" placeholder="Name" required>
+                            <input id="add-teacher-username" placeholder="Username" required>
+                            <input id="add-teacher-password" placeholder="Password" required>
+                            <button type="submit">Add Teacher</button>
+                        </form>
+                        <form id="remove-teacher-form" class="panel-form" style="margin-top:14px;">
+                            <input id="remove-teacher-username" placeholder="Username to remove" required>
+                            <button type="submit" class="button-danger">Remove Teacher</button>
+                        </form>
+                    </div>
+
+                    <div class="card glass" id="student-management">
+                        <h3>Manage Students</h3>
+                        <form id="add-student-form" class="panel-form">
+                            <input id="add-student-name" placeholder="Name" required>
+                            <input id="add-student-roll" placeholder="Roll No" required>
+                            <input id="add-student-password" placeholder="Password" required>
+                            <select id="add-student-course" required>
+                                <option value="">Choose course</option>
+                            </select>
+                            <select id="add-student-semester" required>
+                                <option value="">Choose semester</option>
+                            </select>
+                            <select id="add-student-division" required>
+                                <option value="">Choose division</option>
+                            </select>
+                            <button type="submit">Add Student</button>
+                        </form>
+                        <form id="remove-student-form" class="panel-form" style="margin-top:14px;">
+                            <input id="remove-student-roll" placeholder="Roll No to remove" required>
+                            <button type="submit" class="button-danger">Remove Student</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>&copy; 2026 Smart Attendance System</footer>
+
+    <script src="main-admin.js"></script>
+</body>
+
+</html>

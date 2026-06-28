@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel | Smart Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logo.css">
+    <link rel="stylesheet" href="student.css">
+</head>
+
+<body class="theme-admin">
+    <div class="navbar">
+        <div class="logo brand-lockup">
+            <span class="brand-symbol" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                    <path d="M31 9c-8 1-15 5-20 12"></path>
+                    <path d="M41 11c6 2 11 6 15 12"></path>
+                    <path d="M16 24c3-7 9-12 16-14 8-2 16 0 22 5"></path>
+                    <path d="M11 31c2-7 6-13 12-18 9-7 22-9 33-3"></path>
+                    <path d="M15 39c2-6 5-11 9-15"></path>
+                    <path d="M24 45c-1-8 2-16 8-20 6-5 14-6 21-4"></path>
+                    <path d="M32 47c-2-5-1-11 2-15 4-5 10-7 16-6"></path>
+                    <path d="M21 52c10-4 18-3 26 0"></path>
+                    <path class="logo-fill" d="M22 55c6-2 14-2 20 0-2 3-6 5-10 5s-8-2-10-5z"></path>
+                </svg>
+            </span>
+            <span class="brand-text">
+                <span class="brand-name">FingerMark</span>
+                <span class="brand-tagline">Smart Attendance</span>
+            </span>
+        </div>
+        <div class="menu">
+            <a href="admin.html">Dashboard</a>
+            <a href="login.html" id="logout-link">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <aside class="sidebar glass">
+            <h3>Admin Panel</h3>
+            <ul class="nav-list">
+                <li class="active" data-target="admin-overview">Overview</li>
+                <li data-target="teacher-section">Teachers</li>
+                <li data-target="structure-section">Course Structure</li>
+                <li data-target="student-section">Add Student</li>
+                <li data-target="biometric-section">Biometric Setup</li>
+                <li data-target="activity-section">Activity</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section class="hero-panel glass" id="admin-overview">
+                <div>
+                    <span class="eyebrow">Administration Console</span>
+                    <h1>Manage courses, semesters, divisions, students, and biometrics from one page.</h1>
+                    <p>Each sidebar item scrolls to its section without refresh. Student onboarding now follows course -> semester -> division.</p>
+                    <p class="message" id="admin-message"></p>
+                </div>
+                <div class="hero-stats">
+                    <div class="metric-card">
+                        <span>Admins</span>
+                        <strong id="count-admins">0</strong>
+                    </div>
+                    <div class="metric-card">
+                        <span>Teachers</span>
+                        <strong id="count-teachers">0</strong>
+                    </div>
+                    <div class="metric-card">
+                        <span>Students</span>
+                        <strong id="count-students">0</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="teacher-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Faculty Control</span>
+                    <h2>Teacher Accounts</h2>
+                </div>
+                <div class="grid-two">
+                    <div class="card glass">
+                        <h3>Add Teacher</h3>
+                        <form id="teacher-form" class="panel-form">
+                            <label for="teacher-id">Teacher ID</label>
+                            <input type="text" id="teacher-id" placeholder="e.g. TCH-1001" required>
+                            <label for="teacher-name">Teacher Name</label>
+                            <input type="text" id="teacher-name" required>
+                            <label for="teacher-username">Username</label>
+                            <input type="text" id="teacher-username" required>
+                            <label for="teacher-password">Password</label>
+                            <input type="password" id="teacher-password" required>
+                            <button type="submit">Add Teacher</button>
+                        </form>
+                    </div>
+
+                    <div class="card glass">
+                        <h3>Remove Teacher</h3>
+                        <form id="remove-teacher-form" class="panel-form">
+                            <label for="remove-teacher-id">Teacher ID or Username</label>
+                            <input type="text" id="remove-teacher-id" placeholder="e.g. TCH-1001" required>
+                            <button type="submit" class="button-danger">Remove Teacher</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="structure-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Academic Structure</span>
+                    <h2>Course, Semester, Division, and Subject</h2>
+                </div>
+                <div class="grid-two">
+                    <div class="card glass">
+                        <h3>Add Course</h3>
+                        <form id="course-form" class="panel-form">
+                            <label for="course-name">Course Name</label>
+                            <input type="text" id="course-name" placeholder="e.g. B.Tech Computer Science" required>
+                            <button type="submit">Add Course</button>
+                        </form>
+                    </div>
+
+                    <div class="card glass">
+                        <h3>Add Semester</h3>
+                        <form id="semester-form" class="panel-form">
+                            <label for="semester-course">Select Course</label>
+                            <select id="semester-course" required>
+                                <option value="">Choose course</option>
+                            </select>
+                            <label for="semester-name">Semester Name</label>
+                            <input type="text" id="semester-name" placeholder="e.g. Semester 4" required>
+                            <label for="semester-year">Academic Year</label>
+                            <input type="text" id="semester-year" placeholder="e.g. 2026-27" required>
+                            <button type="submit">Add Semester</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="grid-two">
+                    <div class="card glass">
+                        <h3>Add Division</h3>
+                        <form id="division-form" class="panel-form">
+                            <label for="division-course">Select Course</label>
+                            <select id="division-course" required>
+                                <option value="">Choose course</option>
+                            </select>
+                            <label for="division-sem">Select Semester</label>
+                            <select id="division-sem" required>
+                                <option value="">Choose semester</option>
+                            </select>
+                            <label for="division-name">Division Name</label>
+                            <input type="text" id="division-name" placeholder="e.g. Division A" required>
+                            <button type="submit">Add Division</button>
+                        </form>
+                    </div>
+
+                    <div class="card glass">
+                        <h3>Add Subject</h3>
+                        <form id="subject-form" class="panel-form">
+                            <label for="subject-course">Select Course</label>
+                            <select id="subject-course" required>
+                                <option value="">Choose course</option>
+                            </select>
+                            <label for="subject-sem">Select Semester</label>
+                            <select id="subject-sem" required>
+                                <option value="">Choose semester</option>
+                            </select>
+                            <label for="subject-name">Subject Name</label>
+                            <input type="text" id="subject-name" placeholder="e.g. Data Structures" required>
+                            <button type="submit">Add Subject</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="student-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Onboarding</span>
+                    <h2>Add Student With Full Details</h2>
+                </div>
+                <div class="card glass">
+                    <h3>Student Details</h3>
+                    <form id="student-form" class="panel-form">
+                        <label for="student-name">Student Name</label>
+                        <input type="text" id="student-name" placeholder="Full Name" required>
+                        <label for="student-roll">Roll Number</label>
+                        <input type="text" id="student-roll" placeholder="e.g. 24CS101" required>
+                        <label for="student-password">Password</label>
+                        <input type="password" id="student-password" placeholder="Student login password" required>
+                        <label for="student-course">Course</label>
+                        <select id="student-course" required>
+                            <option value="">Choose course</option>
+                        </select>
+                        <label for="student-sem">Semester</label>
+                        <select id="student-sem" required>
+                            <option value="">Choose semester</option>
+                        </select>
+                        <label for="student-div">Division</label>
+                        <select id="student-div" required>
+                            <option value="">Choose division</option>
+                        </select>
+                        <label for="student-finger-id">Captured Fingerprint Data</label>
+                        <input type="text" id="student-finger-id" placeholder="Auto-filled from scanner capture">
+                        <label for="student-device-id">Scanner Device ID</label>
+                        <input type="text" id="student-device-id" placeholder="Auto-filled after capture">
+                        <button type="button" id="student-capture-scanner-btn">Capture Fingerprint</button>
+                        <p class="scanner-status" id="student-scanner-status"></p>
+                        <div class="face-capture-card">
+                            <div class="face-preview-grid">
+                                <div>
+                                    <span class="face-label">Live Camera</span>
+                                    <video id="student-face-video" class="face-video" autoplay muted playsinline></video>
+                                </div>
+                                <div>
+                                    <span class="face-label">Captured Face</span>
+                                    <img id="student-face-preview" class="face-preview" alt="Captured student face preview">
+                                </div>
+                            </div>
+                            <div class="face-actions">
+                                <button type="button" id="start-student-face-camera-btn">Start Face Camera</button>
+                                <button type="button" id="capture-student-face-btn">Capture Face</button>
+                            </div>
+                            <p class="scanner-status" id="student-face-status"></p>
+                        </div>
+                        <button type="submit" id="student-submit-btn">Add Student</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="content-section" id="biometric-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Biometric Records</span>
+                    <h2>Enroll or Update Fingerprint Data</h2>
+                </div>
+                <div class="grid-two">
+                    <div class="card glass">
+                        <h3>Save Biometric Data</h3>
+                        <form id="biometric-form" class="panel-form">
+                            <label for="bio-roll">Student Roll Number</label>
+                            <input type="text" id="bio-roll" placeholder="Enter roll number" required>
+                            <label for="finger-id">Captured Fingerprint Data</label>
+                            <input type="text" id="finger-id" placeholder="Capture from scanner" required>
+                            <label for="device-id">Scanner Device ID</label>
+                            <input type="text" id="device-id" placeholder="Auto-filled after capture" required>
+                            <button type="button" id="capture-scanner-btn">Capture Fingerprint</button>
+                            <p class="scanner-status" id="scanner-status"></p>
+                            <div class="face-capture-card">
+                                <div class="face-preview-grid">
+                                    <div>
+                                        <span class="face-label">Live Camera</span>
+                                        <video id="bio-face-video" class="face-video" autoplay muted playsinline></video>
+                                    </div>
+                                    <div>
+                                        <span class="face-label">Captured Face</span>
+                                        <img id="bio-face-preview" class="face-preview" alt="Captured biometric face preview">
+                                    </div>
+                                </div>
+                                <div class="face-actions">
+                                    <button type="button" id="start-bio-face-camera-btn">Start Face Camera</button>
+                                    <button type="button" id="capture-bio-face-btn">Capture Face</button>
+                                    <button type="button" id="update-face-biometric-btn">Update Face</button>
+                                </div>
+                                <p class="scanner-status" id="bio-face-status"></p>
+                            </div>
+                            <button type="submit">Save Biometric Record</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="activity-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Audit Trail</span>
+                    <h2>Recent Admin Activity</h2>
+                </div>
+                <div class="card glass">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Action</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activity-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>&copy; 2026 Smart Attendance System</footer>
+
+    <script src="scanner-bridge.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

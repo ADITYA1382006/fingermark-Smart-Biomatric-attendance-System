@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard | Smart Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logo.css">
+    <link rel="stylesheet" href="student.css">
+</head>
+
+<body class="theme-student">
+    <div class="navbar">
+        <div class="logo brand-lockup">
+            <span class="brand-symbol" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                    <path d="M31 9c-8 1-15 5-20 12"></path>
+                    <path d="M41 11c6 2 11 6 15 12"></path>
+                    <path d="M16 24c3-7 9-12 16-14 8-2 16 0 22 5"></path>
+                    <path d="M11 31c2-7 6-13 12-18 9-7 22-9 33-3"></path>
+                    <path d="M15 39c2-6 5-11 9-15"></path>
+                    <path d="M24 45c-1-8 2-16 8-20 6-5 14-6 21-4"></path>
+                    <path d="M32 47c-2-5-1-11 2-15 4-5 10-7 16-6"></path>
+                    <path d="M21 52c10-4 18-3 26 0"></path>
+                    <path class="logo-fill" d="M22 55c6-2 14-2 20 0-2 3-6 5-10 5s-8-2-10-5z"></path>
+                </svg>
+            </span>
+            <span class="brand-text">
+                <span class="brand-name">FingerMark</span>
+                <span class="brand-tagline">Smart Attendance</span>
+            </span>
+        </div>
+        <div class="menu">
+            <a href="student.html">Dashboard</a>
+            <a href="login.html" id="logout-link">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <aside class="sidebar glass">
+            <h3>Student Panel</h3>
+            <ul class="nav-list">
+                <li class="active" data-target="student-overview">Overview</li>
+                <li data-target="student-profile">Profile</li>
+                <li data-target="attendance-heatmap">Attendance Map</li>
+                <li data-target="recent-attendance">Recent Attendance</li>
+                <li data-target="notifications-section">Notifications</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section class="hero-panel glass" id="student-overview">
+                <div>
+                    <span class="eyebrow">Attendance Dashboard</span>
+                    <h1>Track present lectures, percentage, and your attendance pattern in one place.</h1>
+                    <p id="student-message"></p>
+                </div>
+                <div class="hero-stats">
+                    <div class="metric-card">
+                        <span>Today</span>
+                        <strong id="today-status">Pending</strong>
+                    </div>
+                    <div class="metric-card">
+                        <span>Attendance</span>
+                        <strong id="attendance-percent">0%</strong>
+                    </div>
+                    <div class="metric-card">
+                        <span>Lectures</span>
+                        <strong id="lecture-count">0 / 0</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="student-profile">
+                <div class="section-heading">
+                    <span class="eyebrow">Academic Profile</span>
+                    <h2>Centralized Student Details</h2>
+                </div>
+                <div class="grid-two">
+                    <div class="card glass">
+                        <div class="profile-grid">
+                            <div class="profile-item">
+                                <span>Name</span>
+                                <strong id="profile-name">-</strong>
+                            </div>
+                            <div class="profile-item">
+                                <span>Roll No</span>
+                                <strong id="profile-roll">-</strong>
+                            </div>
+                            <div class="profile-item">
+                                <span>Course</span>
+                                <strong id="profile-course">-</strong>
+                            </div>
+                            <div class="profile-item">
+                                <span>Semester</span>
+                                <strong id="profile-semester">-</strong>
+                            </div>
+                            <div class="profile-item">
+                                <span>Division</span>
+                                <strong id="profile-division">-</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="attendance-heatmap">
+                <div class="section-heading">
+                    <span class="eyebrow">Calendar View</span>
+                    <h2>Attendance Heatmap</h2>
+                </div>
+                <div class="card glass">
+                    <div class="heatmap-legend">
+                        <span><i class="heat-dot heat-0"></i>No lecture</span>
+                        <span><i class="heat-dot heat-1"></i>Absent</span>
+                        <span><i class="heat-dot heat-2"></i>Mixed</span>
+                        <span><i class="heat-dot heat-3"></i>Present</span>
+                    </div>
+                    <div id="attendance-heatmap-grid" class="heatmap-grid"></div>
+                </div>
+            </section>
+
+            <section class="content-section" id="recent-attendance">
+                <div class="section-heading">
+                    <span class="eyebrow">History</span>
+                    <h2>Recent Attendance</h2>
+                </div>
+                <div class="card glass">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="content-section" id="notifications-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Alerts</span>
+                    <h2>Notification Center</h2>
+                </div>
+                <div class="card glass">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Subject</th>
+                                <th>Source</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="notification-list"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>&copy; 2026 Smart Attendance System</footer>
+
+    <script src="student.js"></script>
+</body>
+
+</html>

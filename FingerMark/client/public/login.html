@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Attendance System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logo.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo brand-lockup">
+            <span class="brand-symbol" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                    <path d="M31 9c-8 1-15 5-20 12"></path>
+                    <path d="M41 11c6 2 11 6 15 12"></path>
+                    <path d="M16 24c3-7 9-12 16-14 8-2 16 0 22 5"></path>
+                    <path d="M11 31c2-7 6-13 12-18 9-7 22-9 33-3"></path>
+                    <path d="M15 39c2-6 5-11 9-15"></path>
+                    <path d="M24 45c-1-8 2-16 8-20 6-5 14-6 21-4"></path>
+                    <path d="M32 47c-2-5-1-11 2-15 4-5 10-7 16-6"></path>
+                    <path d="M21 52c10-4 18-3 26 0"></path>
+                    <path class="logo-fill" d="M22 55c6-2 14-2 20 0-2 3-6 5-10 5s-8-2-10-5z"></path>
+                </svg>
+            </span>
+            <span class="brand-text">
+                <span class="brand-name">FingerMark</span>
+                <span class="brand-tagline">Smart Attendance</span>
+            </span>
+        </div>
+        <div class="menu">
+            <a href="login.html">Home</a>
+        </div>
+    </div>
+
+    <main class="landing-shell">
+        <section class="hero-copy">
+            <div class="brand-lockup hero-brand">
+                <span class="brand-symbol" aria-hidden="true">
+                    <svg viewBox="0 0 64 64">
+                        <path d="M31 9c-8 1-15 5-20 12"></path>
+                        <path d="M41 11c6 2 11 6 15 12"></path>
+                        <path d="M16 24c3-7 9-12 16-14 8-2 16 0 22 5"></path>
+                        <path d="M11 31c2-7 6-13 12-18 9-7 22-9 33-3"></path>
+                        <path d="M15 39c2-6 5-11 9-15"></path>
+                        <path d="M24 45c-1-8 2-16 8-20 6-5 14-6 21-4"></path>
+                        <path d="M32 47c-2-5-1-11 2-15 4-5 10-7 16-6"></path>
+                        <path d="M21 52c10-4 18-3 26 0"></path>
+                        <path class="logo-fill" d="M22 55c6-2 14-2 20 0-2 3-6 5-10 5s-8-2-10-5z"></path>
+                    </svg>
+                </span>
+                <span class="brand-text">
+                    <span class="brand-name">FingerMark</span>
+                    <span class="brand-tagline">The Smart Bio-Matric Attendance System</span>
+                </span>
+            </div>
+            <h1>Manage academics from single stream line flow.</h1>
+            <p>
+                Secure role-based access for admin, teacher, student, and main admin in one attendance platform.
+            </p>
+        </section>
+
+        <section class="login-card">
+            <div class="card-header">
+                <span class="eyebrow">Secure Access</span>
+                <h2>Login</h2>
+                <p>Choose your role and continue to your dashboard.</p>
+            </div>
+
+            <div class="form-grid">
+                <label for="role">Role</label>
+                <select id="role">
+                    <option value="admin">Admin</option>
+                    <option value="main-admin">Main Admin</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="student">Student</option>
+                </select>
+
+                <label for="username">Username / Roll No</label>
+                <input type="text" id="username" placeholder="Enter username or roll number">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+
+                <button id="login-btn">Login</button>
+                <p id="login-message"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 Smart Attendance System
+    </footer>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

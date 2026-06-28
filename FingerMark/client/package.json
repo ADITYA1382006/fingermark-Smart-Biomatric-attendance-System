@@ -1,0 +1,1 @@
+{"name":"fingermark-client","version":"1.0.0","private":true,"scripts":{"start":"echo \"Static client assets live in client/public\""}}
